@@ -65,3 +65,6 @@ node_modules/
 
 # TypeScript
 **/*.tsbuildinfo
+
+# OS
+.DS_Store
