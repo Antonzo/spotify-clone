@@ -1,7 +1,7 @@
-import { SchemaFactory, Schema, Prop } from "@nestjs/mongoose";
+import { SchemaFactory, Schema, Prop } from '@nestjs/mongoose';
 import { Document, Schema as MSchema } from 'mongoose';
 
-export type TrackDocument = Track & Document
+export type TrackDocument = Track & Document;
 
 @Schema()
 export class Track {
@@ -23,7 +23,7 @@ export class Track {
   @Prop()
   audio: string;
 
-  @Prop({type: [{type: MSchema.Types.ObjectId, ref: 'Comment'}]})
+  @Prop({ type: [{ type: MSchema.Types.ObjectId, ref: 'Comment' }] })
   comments: Comment[];
 }
 
