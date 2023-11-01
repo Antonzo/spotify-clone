@@ -1,6 +1,6 @@
 import { SchemaFactory, Schema, Prop } from "@nestjs/mongoose";
-import {Document} from "mongoose";
-import {Track} from "./track.schema";
+import { Document, Schema as MSchema } from "mongoose";
+import { Track } from "./track.schema";
 
 export type CommentDocument = Comment & Document
 
@@ -11,6 +11,9 @@ export class Comment {
 
   @Prop()
   text: string;
+
+  @Prop({ type: MSchema.Types.ObjectId, ref: 'Track' })
+  track: Track;
 }
 
 export const CommentSchema = SchemaFactory.createForClass(Track);
