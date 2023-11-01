@@ -4,6 +4,7 @@ import { Model, Schema as MSchema } from 'mongoose';
 import { Track, TrackDocument } from './schemas/track.schema';
 import { Comment, CommentDocument } from './schemas/comment.schema';
 import { CreateTrackDto } from './dto/create-track.dto';
+import { CreateCommentDto } from './dto/create-comment.dto';
 
 @Injectable()
 export class TrackService {
@@ -26,5 +27,13 @@ export class TrackService {
 
   async delete(id: MSchema.Types.ObjectId): Promise<MSchema.Types.ObjectId> {
     return await this.trackModel.findByIdAndDelete(id);
+  }
+
+  async addComment(dto: CreateCommentDto): Promise<Comment> {
+    const track = await this.trackModel.findById(dto.trackId);
+    const comment = await this.commentModel.create({ ...dto });
+    track.comments.push(comment._id);
+    await track.save();
+    return comment;
   }
 }
