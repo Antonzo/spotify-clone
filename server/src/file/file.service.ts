@@ -1,7 +1,7 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import path from 'path';
-import fs from 'fs';
-import uuid from 'uuid';
+import * as path from 'path';
+import * as fs from 'fs';
+import * as uuid from 'uuid';
 
 export enum FileType {
   AUDIO = 'audio',
