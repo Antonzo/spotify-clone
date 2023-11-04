@@ -26,8 +26,17 @@ export class TrackService {
     });
   }
 
-  async getAll(): Promise<Track[]> {
-    return await this.trackModel.find();
+  async getAll(count = 20, offset = 0): Promise<Track[]> {
+    return await this.trackModel
+      .find()
+      .skip(Number(offset))
+      .limit(Number(count));
+  }
+
+  async search(query: string): Promise<Track[]> {
+    return await this.trackModel.find({
+      name: { $regex: new RegExp(query, 'i') },
+    });
   }
 
   async getOne(id: MSchema.Types.ObjectId): Promise<Track> {
@@ -44,5 +53,11 @@ export class TrackService {
     track.comments.push(comment._id);
     await track.save();
     return comment;
+  }
+
+  async listen(id: MSchema.Types.ObjectId) {
+    const track = await this.trackModel.findById(id);
+    track.listens += 1;
+    track.save();
   }
 }
