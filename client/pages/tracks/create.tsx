@@ -1,10 +1,12 @@
 import React from 'react'
-import DefaultLayout from '../../layouts/DefaultLayout'
+import DefaultLayout from 'layouts/DefaultLayout'
+import { Button, Grid, Card, Box } from '@mui/material'
+
 
 const CreateTrackPage = () => {
   return (
     <DefaultLayout>
-      <h1>Create Track</h1>
+      aa
     </DefaultLayout>
   )
 }

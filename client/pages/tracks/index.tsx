@@ -1,10 +1,25 @@
 import React from 'react'
-import DefaultLayout from '../../layouts/DefaultLayout'
+import DefaultLayout from 'layouts/DefaultLayout'
+import { Box, Button, Card, Grid } from '@mui/material'
+import { useRouter } from 'next/router'
 
 const TracksPage = () => {
+  const router = useRouter()
+
   return (
     <DefaultLayout>
-      <h1>Tracks</h1>
+      <Grid container justifyContent='center'>
+        <Grid item xs={8}>
+          <Card>
+            <Box px={3}>
+              <Grid container justifyContent='space-between'>
+                <h1>Track list</h1>
+                <Button onClick={() => router.push('/tracks/create')}>Upload</Button>
+              </Grid>
+            </Box>
+          </Card>
+        </Grid>
+      </Grid>
     </DefaultLayout>
   )
 }
