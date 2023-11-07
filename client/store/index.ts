@@ -13,3 +13,5 @@ const initStore = () => {
 const makeStore = () => initStore();
 
 export const wrapper = createWrapper(makeStore);
+
+export type NextThunkDispatch = ThunkDispatch<RootState, void, AnyAction>;
