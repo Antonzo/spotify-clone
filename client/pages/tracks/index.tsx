@@ -1,10 +1,13 @@
 import React from 'react'
 import DefaultLayout from 'layouts/DefaultLayout'
 import { Box, Button, Card, Grid } from '@mui/material'
+import TrackList from 'components/TrackList'
 import { useRouter } from 'next/router'
+import ITrack from 'types/track'
 
 const TracksPage = () => {
   const router = useRouter()
+  const tracks: ITrack[] = []
 
   return (
     <DefaultLayout>
@@ -17,6 +20,7 @@ const TracksPage = () => {
                 <Button onClick={() => router.push('/tracks/create')}>Upload</Button>
               </Grid>
             </Box>
+            <TrackList tracks={tracks} />
           </Card>
         </Grid>
       </Grid>
