@@ -3,9 +3,7 @@ import DefaultLayout from 'layouts/DefaultLayout';
 import { Box, Button, Card, Grid } from '@mui/material';
 import TrackList from 'components/TrackList';
 import { useRouter } from 'next/router';
-import { ITrack } from 'types/track';
 import { useTypedSelector } from 'hooks/useTypedSelector';
-import { useActions } from 'hooks/useActions';
 
 const TracksPage = () => {
   const router = useRouter();

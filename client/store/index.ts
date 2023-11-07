@@ -1,7 +1,7 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { AnyAction, configureStore } from '@reduxjs/toolkit';
 import { createWrapper } from 'next-redux-wrapper';
-import { reducer } from './reducers';
-import thunk from 'redux-thunk';
+import { reducer, RootState } from './reducers';
+import thunk, { ThunkDispatch } from 'redux-thunk';
 
 const initStore = () => {
   return configureStore({

@@ -8,7 +8,7 @@ import { useActions } from 'hooks/useActions';
 
 interface TrackItemProps {
   track: ITrack;
-  active: boolean;
+  active?: boolean;
 }
 
 const Index = ({ track, active = false }: TrackItemProps) => {
@@ -29,7 +29,11 @@ const Index = ({ track, active = false }: TrackItemProps) => {
       <IconButton onClick={play}>
         {active ? <Pause /> : <PlayArrow />}
       </IconButton>
-      <img width={70} height={70} src={track.picture} />
+      <img
+        width={70}
+        height={70}
+        src={'http://localhost:5000/' + track.picture}
+      />
       <Grid
         container
         direction="column"

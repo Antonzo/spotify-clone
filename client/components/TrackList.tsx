@@ -1,6 +1,6 @@
 import React from 'react';
 import { ITrack } from 'types/track';
-import Index from './TrackItem';
+import TrackItem from './TrackItem';
 import { Grid, Box } from '@mui/material';
 
 interface TrackListProps {
@@ -12,7 +12,7 @@ const TrackList = ({ tracks }: TrackListProps) => {
     <Grid container direction="column">
       <Box p={2}>
         {tracks.map((track) => (
-          <Index key={track._id} />
+          <TrackItem key={track._id} track={track} />
         ))}
       </Box>
     </Grid>
