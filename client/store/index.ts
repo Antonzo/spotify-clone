@@ -1,11 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { createWrapper } from 'next-redux-wrapper';
 import { reducer } from './reducers';
+import thunk from 'redux-thunk';
 
-// Initialize the Redux store
 const initStore = () => {
   return configureStore({
     reducer: reducer,
+    middleware: [thunk],
   });
 };
 

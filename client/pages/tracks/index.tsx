@@ -9,9 +9,15 @@ import { useActions } from 'hooks/useActions';
 
 const TracksPage = () => {
   const router = useRouter();
-  // const { } = useActions();
-  const tracks: ITrack[] = [];
-  const {} = useTypedSelector((state) => state.player);
+  const { tracks, error } = useTypedSelector((state) => state.track);
+
+  if (error) {
+    return (
+      <DefaultLayout>
+        <h1>{error}</h1>
+      </DefaultLayout>
+    );
+  }
 
   return (
     <DefaultLayout>

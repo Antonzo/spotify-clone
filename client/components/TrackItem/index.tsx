@@ -3,6 +3,8 @@ import { ITrack } from 'types/track';
 import { Grid, Card, IconButton } from '@mui/material';
 import styles from './TrackItem.module.scss';
 import { Pause, PlayArrow, Delete } from '@mui/icons-material';
+import { useRouter } from 'next/router';
+import { useActions } from 'hooks/useActions';
 
 interface TrackItemProps {
   track: ITrack;
@@ -11,13 +13,20 @@ interface TrackItemProps {
 
 const Index = ({ track, active = false }: TrackItemProps) => {
   const router = useRouter();
+  const { playTrack, pauseTrack, setActiveTrack } = useActions();
+
+  const play = (e: React.MouseEvent<HTMLElement>) => {
+    e.stopPropagation();
+    setActiveTrack(track);
+    playTrack();
+  };
 
   return (
     <Card
       className={styles.track}
       onClick={() => router.push('/tracks/' + track._id)}
     >
-      <IconButton onClick={(e) => e.stopPropagation()}>
+      <IconButton onClick={play}>
         {active ? <Pause /> : <PlayArrow />}
       </IconButton>
       <img width={70} height={70} src={track.picture} />
