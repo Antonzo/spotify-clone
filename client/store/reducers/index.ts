@@ -18,3 +18,5 @@ export const reducer = (state: any, action: any) => {
     return rootReducer(state, action);
   }
 };
+
+export type RootState = ReturnType<typeof rootReducer>;

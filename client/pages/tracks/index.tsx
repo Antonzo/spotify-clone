@@ -4,10 +4,14 @@ import { Box, Button, Card, Grid } from '@mui/material';
 import TrackList from 'components/TrackList';
 import { useRouter } from 'next/router';
 import { ITrack } from 'types/track';
+import { useTypedSelector } from 'hooks/useTypedSelector';
+import { useActions } from 'hooks/useActions';
 
 const TracksPage = () => {
   const router = useRouter();
+  // const { } = useActions();
   const tracks: ITrack[] = [];
+  const {} = useTypedSelector((state) => state.player);
 
   return (
     <DefaultLayout>
