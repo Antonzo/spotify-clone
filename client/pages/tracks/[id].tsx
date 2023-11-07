@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import DefaultLayout from 'layouts/DefaultLayout';
 import { Button, Grid, TextField } from '@mui/material';
 import { useRouter } from 'next/router';
+import { useInput } from 'hooks/useInput';
 import { ITrack } from 'types/track';
 import { GetServerSideProps } from 'next';
+import axios from 'axios';
 
 interface TrackPageProps {
   serverTrack: ITrack;
@@ -13,6 +15,24 @@ const TrackPage = ({ serverTrack }: TrackPageProps) => {
   // Change to array destructuring
   const [track, setTrack] = useState(serverTrack);
   const router = useRouter();
+  const username = useInput('');
+  const text = useInput('');
+
+  const addComment = async () => {
+    try {
+      const response = await axios.post(
+        'http://localhost:5000/tracks/comment',
+        {
+          username: username.value,
+          text: text.value,
+          trackId: track._id,
+        },
+      );
+      setTrack({ ...track, comments: [...track.comments, response.data] });
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   return (
     <DefaultLayout>
@@ -24,7 +44,12 @@ const TrackPage = ({ serverTrack }: TrackPageProps) => {
         Back to list
       </Button>
       <Grid container style={{ margin: '20px 0' }}>
-        <img src={track.picture} width={200} height={200} alt="Track" />
+        <img
+          src={'http://localhost:5000/' + track.picture}
+          width={200}
+          height={200}
+          alt="Track"
+        />
         <div style={{ marginLeft: 30 }}>
           <h1>Track name - {track.name}</h1>
           <h1>Artist - {track.artist}</h1>
@@ -35,9 +60,15 @@ const TrackPage = ({ serverTrack }: TrackPageProps) => {
       <p>{track.text}</p>
       <h1>Comments</h1>
       <Grid container direction="column">
-        <TextField label={'Your name'} fullWidth />
-        <TextField label={'Comment'} fullWidth multiline rows={4} />
-        <Button>Send</Button>
+        <TextField {...text} label={'Your name'} fullWidth />
+        <TextField
+          {...username}
+          label={'Comment'}
+          fullWidth
+          multiline
+          rows={4}
+        />
+        <Button onClick={addComment}>Send</Button>
       </Grid>
       <div>
         {/* Add a check to make sure we have comments before trying to map */}
