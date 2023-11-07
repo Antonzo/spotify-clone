@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { styled, useTheme, Theme, CSSObject } from '@mui/material/styles';
 import {
-  MuiAppBar,
+  AppBar as MuiAppBar,
   Box,
   List,
   ListItem,
@@ -9,19 +9,19 @@ import {
   ListItemIcon,
   ListItemText,
   Toolbar,
-  MuiDrawer,
+  Drawer as MuiDrawer,
   CssBaseline,
   Typography,
   IconButton,
 } from '@mui/material';
 import { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
 import {
-  MenuIcon,
-  ChevronLeftIcon,
-  ChevronRightIcon,
-  HomeIcon,
-  AudiotrackIcon,
-  AlbumIcon,
+  Menu as MenuIcon,
+  ChevronLeft as ChevronLeftIcon,
+  ChevronRight as ChevronRightIcon,
+  Home as HomeIcon,
+  Audiotrack as AudiotrackIcon,
+  Album as AlbumIcon,
 } from '@mui/icons-material';
 import Player from 'components/Player';
 import { useRouter } from 'next/router';
