@@ -1,6 +1,6 @@
-import IComment from 'types/comment'
+import { IComment } from 'types/comment';
 
-export default interface ITrack {
+export interface ITrack {
   _id: string;
   name: string;
   artist: string;
