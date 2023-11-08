@@ -28,9 +28,9 @@ const CreateTrackPage = () => {
       formData.append('picture', picture ?? '');
       formData.append('audio', audio ?? '');
       axios
-        .post('http://localhost:5000/tracks', formData)
+        .post('http://localhost:2828/tracks', formData)
         .then(() => router.push('/tracks'))
-        .catch((e) => console.log(e));
+        .catch((e) => console.log('post track:', e));
     }
   };
 
@@ -73,7 +73,7 @@ const CreateTrackPage = () => {
         )}
 
         {activeStep === 2 && (
-          <FileUpload setFile={setAudio} accept="image/*">
+          <FileUpload setFile={setAudio} accept="audio/*">
             <Button>Upload audio</Button>
             <Button></Button>
           </FileUpload>

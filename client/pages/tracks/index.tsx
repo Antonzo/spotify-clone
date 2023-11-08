@@ -4,6 +4,8 @@ import { Box, Button, Card, Grid } from '@mui/material';
 import TrackList from 'components/TrackList';
 import { useRouter } from 'next/router';
 import { useTypedSelector } from 'hooks/useTypedSelector';
+import { NextThunkDispatch, wrapper } from 'store';
+import { fetchTracks } from 'store/action-creators/track';
 
 const TracksPage = () => {
   const router = useRouter();
@@ -39,3 +41,20 @@ const TracksPage = () => {
 };
 
 export default TracksPage;
+
+export const getServerSideProps = wrapper.getServerSideProps(
+  (store) => async (context) => {
+    const dispatch = store.dispatch;
+
+    await dispatch(await fetchTracks());
+
+    const state = store.getState();
+
+    const tracks = state.track.tracks;
+    return {
+      props: {
+        tracks,
+      },
+    };
+  },
+);

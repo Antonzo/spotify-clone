@@ -32,7 +32,7 @@ const Index = ({ track, active = false }: TrackItemProps) => {
       <img
         width={70}
         height={70}
-        src={'http://localhost:5000/' + track.picture}
+        src={'http://localhost:2828/' + track.picture}
       />
       <Grid
         container

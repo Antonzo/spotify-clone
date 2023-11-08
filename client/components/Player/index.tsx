@@ -33,7 +33,7 @@ const Index = () => {
 
   const setAudio = () => {
     if (active) {
-      audio.src = 'http://localhost:5000/' + active.audio;
+      audio.src = 'http://localhost:2828/' + active.audio;
       audio.volume = volume / 100;
       audio.onloadedmetadata = () => {
         setDuration(Math.ceil(audio.duration));
@@ -47,10 +47,10 @@ const Index = () => {
   const play = () => {
     if (pause) {
       playTrack();
-      audio.play();
+      // audio.play();
     } else {
       pauseTrack();
-      audio.pause();
+      // audio.pause();
     }
   };
 

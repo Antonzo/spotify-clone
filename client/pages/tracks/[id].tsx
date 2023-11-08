@@ -21,7 +21,7 @@ const TrackPage = ({ serverTrack }: TrackPageProps) => {
   const addComment = async () => {
     try {
       const response = await axios.post(
-        'http://localhost:5000/tracks/comment',
+        'http://localhost:2828/tracks/comment',
         {
           username: username.value,
           text: text.value,
@@ -30,7 +30,7 @@ const TrackPage = ({ serverTrack }: TrackPageProps) => {
       );
       setTrack({ ...track, comments: [...track.comments, response.data] });
     } catch (e) {
-      console.log(e);
+      console.log('AddComments: ', e);
     }
   };
 
@@ -45,7 +45,7 @@ const TrackPage = ({ serverTrack }: TrackPageProps) => {
       </Button>
       <Grid container style={{ margin: '20px 0' }}>
         <img
-          src={'http://localhost:5000/' + track.picture}
+          src={'http://localhost:2828/' + track.picture}
           width={200}
           height={200}
           alt="Track"
@@ -97,7 +97,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     };
   }
 
-  const response = await fetch(`http://localhost:5000/tracks/${params.id}`);
+  const response = await fetch(`http://localhost:2828/tracks/${params.id}`);
   const serverTrack: ITrack = await response.json();
 
   return {

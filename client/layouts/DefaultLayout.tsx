@@ -25,7 +25,7 @@ import {
 } from '@mui/icons-material';
 import Player from 'components/Player';
 import { useRouter } from 'next/router';
-import { Head } from 'next/document';
+// import { Head } from 'next/document';
 
 const drawerWidth = 240;
 
@@ -125,9 +125,9 @@ const DefaultLayout = ({ title, children }: DefaultLayoutProps) => {
 
   return (
     <>
-      <Head>
-        <title>{title || 'Music platform'}</title>
-      </Head>
+      {/*<Head>*/}
+      {/*  <title>{title || 'Music platform'}</title>*/}
+      {/*</Head>*/}
       <Box sx={{ display: 'flex' }}>
         <CssBaseline />
         <AppBar position="fixed" open={open}>
