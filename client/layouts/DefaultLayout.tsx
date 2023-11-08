@@ -25,7 +25,7 @@ import {
 } from '@mui/icons-material';
 import Player from 'components/Player';
 import { useRouter } from 'next/router';
-// import { Head } from 'next/document';
+import { Head } from 'next/document';
 
 const drawerWidth = 240;
 
@@ -106,11 +106,17 @@ const tabs = [
 
 interface DefaultLayoutProps {
   title?: string;
-
+  description?: string;
+  keywords?: string;
   children?: React.ReactNode;
 }
 
-const DefaultLayout = ({ title, children }: DefaultLayoutProps) => {
+const DefaultLayout = ({
+  title,
+  description,
+  keywords,
+  children,
+}: DefaultLayoutProps) => {
   const theme = useTheme();
   const router = useRouter();
   const [open, setOpen] = React.useState(false);
@@ -125,9 +131,13 @@ const DefaultLayout = ({ title, children }: DefaultLayoutProps) => {
 
   return (
     <>
-      {/*<Head>*/}
-      {/*  <title>{title || 'Music platform'}</title>*/}
-      {/*</Head>*/}
+      <Head>
+        <title>{title || 'Music platform'}</title>
+        <meta name="description" content={'Music platform. ' + description} />
+        <meta name="robots" content="index, follow" />
+        <meta name="keywords" content={keywords || 'music, tracks, albums'} />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </Head>
       <Box sx={{ display: 'flex' }}>
         <CssBaseline />
         <AppBar position="fixed" open={open}>

@@ -20,7 +20,7 @@ const TracksPage = () => {
   }
 
   return (
-    <DefaultLayout>
+    <DefaultLayout title={'List of tracks'}>
       <Grid container justifyContent="center">
         <Grid item xs={8}>
           <Card>

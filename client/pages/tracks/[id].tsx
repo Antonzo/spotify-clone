@@ -35,7 +35,9 @@ const TrackPage = ({ serverTrack }: TrackPageProps) => {
   };
 
   return (
-    <DefaultLayout>
+    <DefaultLayout
+      title={'Music platform - ' + track.name + ' - ' + track.artist}
+    >
       <Button
         variant={'outlined'}
         style={{ fontSize: 32 }}
