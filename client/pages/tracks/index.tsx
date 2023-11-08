@@ -4,7 +4,7 @@ import { Box, Button, Card, Grid } from '@mui/material';
 import TrackList from 'components/TrackList';
 import { useRouter } from 'next/router';
 import { useTypedSelector } from 'hooks/useTypedSelector';
-import { NextThunkDispatch, wrapper } from 'store';
+import { wrapper } from 'store';
 import { fetchTracks } from 'store/action-creators/track';
 
 const TracksPage = () => {
