@@ -1,15 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import DefaultLayout from 'layouts/DefaultLayout';
-import { Box, Button, Card, Grid } from '@mui/material';
+import { Box, Button, Card, Grid, TextField } from '@mui/material';
 import TrackList from 'components/TrackList';
 import { useRouter } from 'next/router';
 import { useTypedSelector } from 'hooks/useTypedSelector';
 import { wrapper } from 'store';
-import { fetchTracks } from 'store/action-creators/track';
+import { fetchTracks, searchTracks } from 'store/action-creators/track';
+import { useDispatch } from 'react-redux';
+import { NextThunkDispatch } from 'store';
 
 const TracksPage = () => {
   const router = useRouter();
   const { tracks, error } = useTypedSelector((state) => state.track);
+  const [query, setQuery] = useState('');
+  const dispatch = useDispatch() as NextThunkDispatch;
+
+  const search = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    setQuery(e.target.value);
+    await dispatch(await searchTracks(e.target.value));
+  };
 
   if (error) {
     return (
@@ -32,6 +41,7 @@ const TracksPage = () => {
                 </Button>
               </Grid>
             </Box>
+            <TextField fullWidth value={query} onChange={search} />
             <TrackList tracks={tracks} />
           </Card>
         </Grid>
