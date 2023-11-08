@@ -14,10 +14,17 @@ const TracksPage = () => {
   const { tracks, error } = useTypedSelector((state) => state.track);
   const [query, setQuery] = useState('');
   const dispatch = useDispatch() as NextThunkDispatch;
+  const [timer, setTimer] = useState<number | null>(null);
 
   const search = async (e: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(e.target.value);
-    await dispatch(await searchTracks(e.target.value));
+    if (timer) {
+      clearTimeout(timer);
+    }
+    const timeoutId = window.setTimeout(async () => {
+      await dispatch(await searchTracks(e.target.value));
+    }, 500);
+    setTimer(timeoutId);
   };
 
   if (error) {
